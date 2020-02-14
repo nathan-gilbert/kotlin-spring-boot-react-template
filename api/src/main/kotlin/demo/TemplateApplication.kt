@@ -7,5 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 class TemplateApplication
 
 fun main(args: Array<String>) {
-    runApplication<TemplateApplication>(*args)
+  runApplication<TemplateApplication>(*args)
 }
