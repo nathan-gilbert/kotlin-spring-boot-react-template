@@ -29,12 +29,14 @@ dependencies {
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   kapt("org.springframework.boot:spring-boot-configuration-processor")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.6.1")
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
   kotlinOptions {
     freeCompilerArgs = listOf("-Xjsr305=strict")
-    jvmTarget = "1.8"
+    this.jvmTarget = "11"
   }
 }
 
