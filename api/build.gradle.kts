@@ -3,11 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   id("org.springframework.boot") version "2.2.6.RELEASE"
   id("io.spring.dependency-management") version "1.0.9.RELEASE"
+  @Suppress("StringLiteralDuplication")
   kotlin("jvm") version "1.3.70"
   kotlin("plugin.spring") version "1.3.70"
   kotlin("plugin.allopen") version "1.3.70"
   kotlin("plugin.jpa") version "1.3.70"
   kotlin("kapt") version "1.3.70"
+  id("io.gitlab.arturbosch.detekt") version ("1.7.1")
 }
 
 group = "demo"
@@ -31,6 +33,27 @@ dependencies {
   kapt("org.springframework.boot:spring-boot-configuration-processor")
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.1")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.7.1")
+}
+
+allOpen {
+  annotation("javax.persistence.Entity")
+  annotation("javax.persistence.Embeddable")
+  annotation("javax.persistence.MappedSuperclass")
+}
+
+detekt {
+  failFast = true // fail build on any finding
+  buildUponDefaultConfig = true // preconfigure defaults
+  // point to your custom config defining rules to run, overwriting default behavior
+  config = files("$projectDir/detekt.yml")
+  autoCorrect = true
+
+  reports {
+    html.enabled = true // observe findings in your browser with structure and code snippets
+    xml.enabled = false // checkstyle like format mainly for integrations like Jenkins
+    txt.enabled = false // similar to the console output, contains issue signature to manually edit baseline files
+  }
 }
 
 tasks.withType<KotlinCompile> {
@@ -40,12 +63,13 @@ tasks.withType<KotlinCompile> {
   }
 }
 
-allOpen {
-  annotation("javax.persistence.Entity")
-  annotation("javax.persistence.Embeddable")
-  annotation("javax.persistence.MappedSuperclass")
-}
-
 tasks.withType<Test> {
   useJUnitPlatform()
+}
+
+tasks {
+  withType<io.gitlab.arturbosch.detekt.Detekt> {
+    // Target version of the generated JVM bytecode. It is used for type resolution.
+    this.jvmTarget = "11"
+  }
 }
