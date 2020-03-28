@@ -9,7 +9,8 @@ plugins {
   kotlin("plugin.allopen") version "1.3.70"
   kotlin("plugin.jpa") version "1.3.70"
   kotlin("kapt") version "1.3.70"
-  id("io.gitlab.arturbosch.detekt") version ("1.7.1")
+  id("io.gitlab.arturbosch.detekt") version "1.7.1"
+  id("jacoco")
 }
 
 group = "demo"
@@ -56,6 +57,10 @@ detekt {
   }
 }
 
+jacoco {
+  toolVersion = "0.8.5"
+}
+
 tasks.withType<KotlinCompile> {
   kotlinOptions {
     freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -71,5 +76,24 @@ tasks {
   withType<io.gitlab.arturbosch.detekt.Detekt> {
     // Target version of the generated JVM bytecode. It is used for type resolution.
     this.jvmTarget = "11"
+  }
+}
+
+tasks.jacocoTestReport {
+  reports {
+    xml.isEnabled = false
+    csv.isEnabled = false
+    html.isEnabled = true
+    html.destination = file("$buildDir/reports/jacocoHtml")
+  }
+}
+
+tasks.jacocoTestCoverageVerification {
+  violationRules {
+    rule {
+      limit {
+        minimum = "1.0".toBigDecimal()
+      }
+    }
   }
 }
