@@ -1,18 +1,19 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id("org.springframework.boot") version "2.2.6.RELEASE"
   id("io.spring.dependency-management") version "1.0.9.RELEASE"
   @Suppress("StringLiteralDuplication")
-  kotlin("jvm") version "1.3.70"
-  kotlin("plugin.spring") version "1.3.70"
-  kotlin("plugin.allopen") version "1.3.70"
-  kotlin("plugin.jpa") version "1.3.70"
-  kotlin("kapt") version "1.3.70"
+  kotlin("jvm") version "1.3.71"
+  kotlin("plugin.spring") version "1.3.71"
+  kotlin("plugin.allopen") version "1.3.71"
+  kotlin("plugin.jpa") version "1.3.71"
+  kotlin("kapt") version "1.3.71"
   id("io.gitlab.arturbosch.detekt") version "1.7.1"
   id("jacoco")
   id("org.jetbrains.dokka") version "0.10.1"
+  id("org.flywaydb.flyway") version "6.3.2"
 }
 
 group = "demo"
@@ -31,6 +32,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  implementation("org.postgresql:postgresql")
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   kapt("org.springframework.boot:spring-boot-configuration-processor")
@@ -61,6 +63,12 @@ detekt {
 
 jacoco {
   toolVersion = "0.8.5"
+}
+
+flyway {
+  url = "jdbc:postgresql://localhost:5432/demo"
+  user = "nathan"
+  password = ""
 }
 
 tasks.withType<KotlinCompile> {
@@ -101,7 +109,7 @@ tasks.jacocoTestCoverageVerification {
 }
 
 tasks {
-  val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
+  getting(DokkaTask::class) {
     outputFormat = "html"
     outputDirectory = "$buildDir/dokka"
   }
