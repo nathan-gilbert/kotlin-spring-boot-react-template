@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
   id("org.springframework.boot") version "2.2.6.RELEASE"
@@ -11,6 +12,7 @@ plugins {
   kotlin("kapt") version "1.3.70"
   id("io.gitlab.arturbosch.detekt") version "1.7.1"
   id("jacoco")
+  id("org.jetbrains.dokka") version "0.10.1"
 }
 
 group = "demo"
@@ -95,5 +97,12 @@ tasks.jacocoTestCoverageVerification {
         minimum = "1.0".toBigDecimal()
       }
     }
+  }
+}
+
+tasks {
+  val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
+    outputFormat = "html"
+    outputDirectory = "$buildDir/dokka"
   }
 }

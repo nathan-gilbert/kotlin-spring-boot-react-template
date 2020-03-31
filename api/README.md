@@ -9,6 +9,7 @@ Example backend API service with Kotlin, Springboot, Gradle, JUnit5, Detekt, Jac
 * `./gradlew test` - runs all tests
 * `./gradlew detekt` - runs linter
 * `./gradlew jacocoTestReport` - runs test coverage
+* `./gradlew dokka` - generate documentation
 
 ## TODO
 
