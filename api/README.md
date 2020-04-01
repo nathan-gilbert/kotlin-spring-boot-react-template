@@ -12,7 +12,16 @@ Example backend API service with Kotlin, Springboot, Gradle, JUnit5, Detekt, Jac
 * `./gradlew dokka` - generate documentation
 * `./gradlew flywayMigrate -i` - migrate the database to the latest version.
 
+## Database Admin
+
+Assumes postgreSQL. 
+
+* `createdb demo` -- creates the database, run before initial migration
+* `dropdb demo` -- deletes the database
+
 ## TODO
 
-* Add database layer
-* Add migration layer
+* fix timestamps on create
+* add more CRUD REST endpoints
+* add some database and service tests
+
