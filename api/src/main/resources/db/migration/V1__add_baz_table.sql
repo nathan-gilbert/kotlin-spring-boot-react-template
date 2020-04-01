@@ -1,5 +1,8 @@
 create table BAZ
 (
-    ID  int          not null,
-    BOO varchar(100) not null
+    id         BIGINT PRIMARY KEY,
+    boo        TEXT      null,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('UTC'::TEXT, now()),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('UTC'::TEXT, now()),
+    deleted_at TIMESTAMP null
 );

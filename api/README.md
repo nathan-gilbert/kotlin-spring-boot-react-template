@@ -10,6 +10,7 @@ Example backend API service with Kotlin, Springboot, Gradle, JUnit5, Detekt, Jac
 * `./gradlew detekt` - runs linter
 * `./gradlew jacocoTestReport` - runs test coverage
 * `./gradlew dokka` - generate documentation
+* `./gradlew flywayMigrate -i` - migrate the database to the latest version.
 
 ## TODO
 
