@@ -21,7 +21,10 @@ Assumes postgreSQL.
 
 ## TODO
 
-* fix timestamps on create
 * add more CRUD REST endpoints
+    * get
+    * update
+    * delete
+    * restore
 * add some database and service tests
 

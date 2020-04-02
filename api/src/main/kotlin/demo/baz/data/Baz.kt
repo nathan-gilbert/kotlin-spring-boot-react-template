@@ -1,6 +1,8 @@
 package demo.baz.data
 
+import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.SQLDelete
+import org.hibernate.annotations.UpdateTimestamp
 import org.hibernate.annotations.Where
 import java.time.OffsetDateTime
 import javax.persistence.Column
@@ -24,8 +26,13 @@ class BaseBaz internal constructor(
     val id: Long?,
     @Column(name = "boo")
     val boo: String,
+    @Column(name = "created_at")
+    @CreationTimestamp
     val createdAt: OffsetDateTime? = null,
+    @Column(name = "updated_at")
+    @UpdateTimestamp
     val updatedAt: OffsetDateTime? = null,
+    @Column(name = "deleted_at")
     val deletedAt: OffsetDateTime? = null
 )
 
