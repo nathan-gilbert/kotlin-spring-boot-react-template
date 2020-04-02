@@ -23,17 +23,17 @@ import javax.persistence.Table
 class BaseBaz internal constructor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?,
+    var id: Long?,
     @Column(name = "boo")
     val boo: String,
     @Column(name = "created_at")
     @CreationTimestamp
-    val createdAt: OffsetDateTime? = null,
+    var createdAt: OffsetDateTime? = null,
     @Column(name = "updated_at")
     @UpdateTimestamp
-    val updatedAt: OffsetDateTime? = null,
+    var updatedAt: OffsetDateTime? = null,
     @Column(name = "deleted_at")
-    val deletedAt: OffsetDateTime? = null
+    var deletedAt: OffsetDateTime? = null
 )
 
 /**

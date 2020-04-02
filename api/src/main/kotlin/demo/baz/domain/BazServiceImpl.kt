@@ -24,6 +24,10 @@ class BazServiceImpl(
     return newBaz.toDto()
   }
 
+  override fun remove(id: Long) {
+    bazRepository.deleteById(id)
+  }
+
   override fun restore(id: Long) {
     bazRepository.restore(id)
   }

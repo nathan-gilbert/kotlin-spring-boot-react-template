@@ -6,5 +6,6 @@ interface BazService {
    */
   fun create(msg: String): BazDto
 
+  fun remove(id: Long)
   fun restore(id: Long)
 }

@@ -38,6 +38,7 @@ dependencies {
   kapt("org.springframework.boot:spring-boot-configuration-processor")
   testImplementation("org.junit.jupiter:junit-jupiter:5.6.1")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
   detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.7.1")
 }
 
