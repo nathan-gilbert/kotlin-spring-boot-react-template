@@ -14,15 +14,13 @@ Example backend API service with Kotlin, Springboot, Gradle, JUnit5, Detekt, Jac
 
 ## Database Admin
 
-Assumes postgreSQL. 
+Assumes postgreSQL.
 
 * `createdb demo` -- creates the database, run before initial migration
 * `dropdb demo` -- deletes the database
 
 ## TODO
 
+* Add Swagger
 * add more CRUD REST endpoints
-    * update
-    * delete
-    * restore
 
