@@ -22,9 +22,7 @@ Assumes postgreSQL.
 ## TODO
 
 * add more CRUD REST endpoints
-    * get
     * update
     * delete
     * restore
-* add some database and service tests
 

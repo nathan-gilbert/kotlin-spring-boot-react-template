@@ -3,6 +3,7 @@ package demo.baz.domain
 import com.fasterxml.jackson.annotation.JsonFormat
 import demo.baz.data.Baz
 import demo.baz.data.BazRepository
+import demo.baz.validation.RecordNotFoundException
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
@@ -22,6 +23,12 @@ class BazServiceImpl(
   override fun create(msg: String): BazDto {
     val newBaz = bazRepository.save(Baz(null, msg))
     return newBaz.toDto()
+  }
+
+  override fun get(id: Long): BazDto {
+    val baz = bazRepository.findById(id)
+        .orElseThrow { RecordNotFoundException("Invalid baz id: $id"); }
+    return baz.toDto()
   }
 
   override fun remove(id: Long) {

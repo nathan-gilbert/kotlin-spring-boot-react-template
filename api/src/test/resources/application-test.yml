@@ -1,6 +1,6 @@
 server:
   port: 9000
-  servlet.contextPath: /api/baz
+  servlet.contextPath: /api
 
 spring:
   datasource:
