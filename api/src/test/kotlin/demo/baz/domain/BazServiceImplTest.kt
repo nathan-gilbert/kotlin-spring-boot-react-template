@@ -19,7 +19,7 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.time.OffsetDateTime.now
-import java.util.*
+import java.util.Optional
 
 @ExtendWith(SpringExtension::class)
 internal class BazServiceImplTest {
