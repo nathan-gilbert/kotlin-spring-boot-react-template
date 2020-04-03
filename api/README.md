@@ -22,5 +22,5 @@ Assumes postgreSQL.
 ## TODO
 
 * Add Swagger
-* add more CRUD REST endpoints
-
+* Fix CreatedAt, UpdatedAt, etc
+* Get to 100% coverage

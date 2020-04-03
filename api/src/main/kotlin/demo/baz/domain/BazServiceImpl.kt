@@ -5,6 +5,7 @@ import demo.baz.data.Baz
 import demo.baz.data.BazRepository
 import demo.baz.validation.RecordNotFoundException
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.OffsetDateTime
 
 data class BazDto(
@@ -29,6 +30,13 @@ class BazServiceImpl(
     val baz = bazRepository.findById(id)
         .orElseThrow { RecordNotFoundException("Invalid baz id: $id"); }
     return baz.toDto()
+  }
+
+  @Transactional
+  override fun update(id: Long, msg: String): BazDto {
+    val bazToUpdate = get(id)
+    val updatedBaz = bazRepository.save(Baz(bazToUpdate.id, msg))
+    return updatedBaz.toDto()
   }
 
   override fun remove(id: Long) {

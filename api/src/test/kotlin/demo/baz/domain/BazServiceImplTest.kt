@@ -19,7 +19,7 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.time.OffsetDateTime.now
-import java.util.Optional
+import java.util.*
 
 @ExtendWith(SpringExtension::class)
 internal class BazServiceImplTest {
@@ -44,7 +44,7 @@ internal class BazServiceImplTest {
   }
 
   @Test
-  fun create() {
+  fun `creates new Baz`() {
     whenever(bazRepository.save(any<Baz>()))
         .thenReturn(DEFAULT_BAZ)
 
@@ -63,7 +63,7 @@ internal class BazServiceImplTest {
   }
 
   @Test
-  fun restore() {
+  fun `restores a deletes a Baz`() {
     val tempBaz = Baz(DEFAULT_ID, DEFAULT_BOO).apply { createdAt = now(); updatedAt = now() }
     val masterBaz = BazMaster(DEFAULT_ID, DEFAULT_BOO, tempBaz.createdAt, tempBaz.updatedAt, null)
 

@@ -44,7 +44,7 @@ internal class BazControllerTest @Autowired constructor(
   }
 
   @Test
-  fun getBaz() {
+  fun `get a baz`() {
     lateinit var bazCreationResponse: BazResponse
     mvc.perform(get("$CONTROLLER_PATH/${defaultBaz.id}")
         .contentType(MediaType.APPLICATION_JSON))
@@ -62,14 +62,14 @@ internal class BazControllerTest @Autowired constructor(
   }
 
   @Test
-  fun dontGetBaz() {
+  fun `doesn't find a baz`() {
     mvc.perform(get("$CONTROLLER_PATH/5000")
         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isNotFound)
   }
 
   @Test
-  fun createBaz() {
+  fun `creates a baz`() {
     val newBoo = "NewBoo"
     val bazBody = JSONObject(mapOf("boo" to newBoo)).toString()
     lateinit var bazCreationResponse: BazResponse
