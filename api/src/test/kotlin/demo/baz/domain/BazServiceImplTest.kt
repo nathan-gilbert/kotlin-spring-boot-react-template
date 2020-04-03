@@ -19,7 +19,7 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.time.OffsetDateTime.now
-import java.util.*
+import java.util.Optional
 
 @ExtendWith(SpringExtension::class)
 internal class BazServiceImplTest {
@@ -59,7 +59,7 @@ internal class BazServiceImplTest {
     verify(bazRepository).save(bazCaptor.capture())
     val savedBaz = bazCaptor.value
     assertThat(savedBaz.id, nullValue())
-    assertThat(savedBaz.boo, equalTo(DEFAULT_MSG))
+    assertThat(savedBaz.msg, equalTo(DEFAULT_MSG))
   }
 
   @Test

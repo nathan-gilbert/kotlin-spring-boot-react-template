@@ -23,7 +23,7 @@ class BazRepositoryTest @Autowired constructor(
     val foundBaz = bazRepository.findById(baz.id!!)
     assertThat(foundBaz).isPresent
     assertThat(foundBaz.get().id).isEqualTo(baz.id!!)
-    assertThat(foundBaz.get().boo).isEqualTo(baz.boo)
+    assertThat(foundBaz.get().msg).isEqualTo(baz.msg)
     assertThat(foundBaz.get().createdAt).isEqualTo(baz.createdAt)
     assertThat(foundBaz.get().updatedAt).isEqualTo(baz.updatedAt)
     assertThat(foundBaz.get().deletedAt).isEqualTo(baz.deletedAt)
@@ -51,7 +51,7 @@ class BazMasterRepositoryTest @Autowired constructor(
     val foundBaz = bazRepository.findById(bazMaster.id!!)
     assertThat(foundBaz).isPresent
     assertThat(foundBaz.get().id).isEqualTo(bazMaster.id!!)
-    assertThat(foundBaz.get().boo).isEqualTo(bazMaster.boo)
+    assertThat(foundBaz.get().msg).isEqualTo(bazMaster.msg)
     assertThat(foundBaz.get().createdAt).isEqualTo(bazMaster.createdAt)
     assertThat(foundBaz.get().updatedAt).isEqualTo(bazMaster.updatedAt)
     assertThat(foundBaz.get().deletedAt).isEqualTo(bazMaster.deletedAt)

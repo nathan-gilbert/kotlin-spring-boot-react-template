@@ -13,7 +13,8 @@ data class BazDto(
     val id: Long?,
     val msg: String,
     val createdAt: OffsetDateTime?,
-    val updatedAt: OffsetDateTime?
+    val updatedAt: OffsetDateTime?,
+    val deletedAt: OffsetDateTime?
 )
 
 @Service
@@ -50,8 +51,9 @@ class BazServiceImpl(
   private fun Baz.toDto() =
       BazDto(
           id,
-          boo,
+          msg,
           createdAt,
-          updatedAt
+          updatedAt,
+          deletedAt
       )
 }

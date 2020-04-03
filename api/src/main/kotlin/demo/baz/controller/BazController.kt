@@ -12,19 +12,24 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import java.time.OffsetDateTime
+import java.time.OffsetDateTime.now
 
 data class CreateBazRequest(
-    val boo: String
+    val msg: String
 )
 
 data class UpdateBazRequest(
     val id: Long,
-    val boo: String
+    val msg: String
 )
 
 data class BazResponse(
     val id: Long,
-    val qux: String
+    val msg: String,
+    val createdAt: OffsetDateTime?,
+    val updatedAt: OffsetDateTime?,
+    val deletedAt: OffsetDateTime?
 )
 
 @RestController
@@ -36,7 +41,7 @@ class BazController(
   @ResponseStatus(HttpStatus.OK)
   fun getBaz(@PathVariable id: Long): BazResponse {
     val result = bazService.get(id)
-    return BazResponse(result.id!!, result.msg)
+    return BazResponse(result.id!!, result.msg, now(), now(), null)
   }
 
   @DeleteMapping("/{id}")
@@ -50,8 +55,8 @@ class BazController(
   fun createBaz(
       @Validated @RequestBody createBazBody: CreateBazRequest
   ): BazResponse {
-    val newBaz = bazService.create(createBazBody.boo)
-    return BazResponse(newBaz.id!!, newBaz.msg)
+    val newBaz = bazService.create(createBazBody.msg)
+    return BazResponse(newBaz.id!!, newBaz.msg, newBaz.createdAt, newBaz.updatedAt, newBaz.deletedAt)
   }
 
   @PutMapping
@@ -59,7 +64,11 @@ class BazController(
   fun updateBaz(
       @Validated @RequestBody updateBazBody: UpdateBazRequest
   ): BazResponse {
-    val updatedBaz = bazService.update(updateBazBody.id, updateBazBody.boo)
-    return BazResponse(updatedBaz.id!!, updatedBaz.msg)
+    val updatedBaz = bazService.update(updateBazBody.id, updateBazBody.msg)
+    return BazResponse(updatedBaz.id!!,
+        updatedBaz.msg,
+        updatedBaz.createdAt,
+        updatedBaz.updatedAt,
+        updatedBaz.deletedAt)
   }
 }

@@ -17,15 +17,15 @@ import javax.persistence.Table
  * Baz Entity.
  *
  * @property id - auto generated id
- * @property boo - boo of the user
+ * @property msg - msg of the baz
  */
 @MappedSuperclass
 class BaseBaz internal constructor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
-    @Column(name = "boo")
-    val boo: String,
+    @Column(name = "msg")
+    val msg: String,
     @Column(name = "created_at")
     @CreationTimestamp
     var createdAt: OffsetDateTime? = null,
