@@ -21,6 +21,4 @@ Assumes postgreSQL.
 
 ## TODO
 
-* Add Swagger
-* Fix CreatedAt, UpdatedAt, etc
-* Get to 100% coverage
+* Fix CreatedAt, UpdatedAt, fields etc
