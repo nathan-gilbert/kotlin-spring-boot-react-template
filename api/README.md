@@ -1,6 +1,6 @@
 # Demo API Service
 
-Example backend API service with Kotlin, Springboot, Gradle, JUnit5, Detekt, Jacoco
+Example backend API service with Kotlin, Springboot, Gradle, JUnit5, Detekt, Jacoco, Swagger, JPA, Flyway, PostgreSQL
 
 ## Usage
 
@@ -18,6 +18,11 @@ Assumes postgreSQL.
 
 * `createdb demo` -- creates the database, run before initial migration
 * `dropdb demo` -- deletes the database
+
+## Swagger Documentation
+
+* `./gradlew bootRun`
+* open browser and navigate to `https://localhost:9000/api/swagger-ui.html`
 
 ## TODO
 
