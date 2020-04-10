@@ -42,7 +42,7 @@ internal class BazControllerTest @Autowired constructor(
 
   @BeforeEach
   fun setup() {
-    defaultBaz = bazRepository.save(Baz(DEFAULT_ID, DEFAULT_BOO))
+    defaultBaz = bazRepository.save(Baz(DEFAULT_ID, DEFAULT_BOO, null, null))
   }
 
   @Test

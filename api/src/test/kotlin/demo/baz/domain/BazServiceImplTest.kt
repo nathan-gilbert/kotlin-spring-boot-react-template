@@ -40,7 +40,7 @@ internal class BazServiceImplTest {
     const val DEFAULT_BOO = "myBoo"
     const val DEFAULT_ID = 1L
     const val DEFAULT_MSG = "myBooTwo"
-    val DEFAULT_BAZ = Baz(2L, DEFAULT_MSG).apply { createdAt = now(); updatedAt = now() }
+    val DEFAULT_BAZ = Baz(2L, DEFAULT_MSG, null, null).apply { createdAt = now(); updatedAt = now() }
   }
 
   @Test
@@ -64,7 +64,7 @@ internal class BazServiceImplTest {
 
   @Test
   fun `restores a deletes a Baz`() {
-    val tempBaz = Baz(DEFAULT_ID, DEFAULT_BOO).apply { createdAt = now(); updatedAt = now() }
+    val tempBaz = Baz(DEFAULT_ID, DEFAULT_BOO, null, null).apply { createdAt = now(); updatedAt = now() }
     val masterBaz = BazMaster(DEFAULT_ID, DEFAULT_BOO, tempBaz.createdAt, tempBaz.updatedAt, null)
 
     whenever(bazRepository.findById(DEFAULT_ID))

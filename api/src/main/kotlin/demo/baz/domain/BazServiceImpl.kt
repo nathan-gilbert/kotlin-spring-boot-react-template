@@ -23,7 +23,7 @@ class BazServiceImpl(
 ) : BazService {
 
   override fun create(msg: String): BazDto {
-    val newBaz = bazRepository.save(Baz(null, msg))
+    val newBaz = bazRepository.save(Baz(null, msg, null, null))
     return newBaz.toDto()
   }
 
@@ -36,8 +36,8 @@ class BazServiceImpl(
   @Transactional
   override fun update(id: Long, msg: String): BazDto {
     val bazToUpdate = get(id)
-    val updatedBaz = bazRepository.save(Baz(bazToUpdate.id, msg))
-    return updatedBaz.toDto()
+    bazRepository.save(Baz(bazToUpdate.id, msg, bazToUpdate.createdAt, null))
+    return get(id)
   }
 
   override fun remove(id: Long) {

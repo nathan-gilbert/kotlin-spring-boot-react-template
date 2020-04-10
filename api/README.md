@@ -26,4 +26,3 @@ Assumes postgreSQL.
 
 ## TODO
 
-* Fix CreatedAt, UpdatedAt, fields etc

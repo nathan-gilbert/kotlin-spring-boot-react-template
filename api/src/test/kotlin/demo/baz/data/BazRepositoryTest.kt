@@ -15,7 +15,7 @@ class BazRepositoryTest @Autowired constructor(
 ) {
 
   val baz: Baz by lazy {
-    bazRepository.save(Baz(null, "myBaz"))
+    bazRepository.save(Baz(null, "myBaz", null, null))
   }
 
   @Test

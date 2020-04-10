@@ -64,7 +64,8 @@ class BazController(
   fun updateBaz(
       @Validated @RequestBody updateBazBody: UpdateBazRequest
   ): BazResponse {
-    val updatedBaz = bazService.update(updateBazBody.id, updateBazBody.msg)
+    bazService.update(updateBazBody.id, updateBazBody.msg)
+    val updatedBaz = bazService.get(updateBazBody.id)
     return BazResponse(updatedBaz.id!!,
         updatedBaz.msg,
         updatedBaz.createdAt,

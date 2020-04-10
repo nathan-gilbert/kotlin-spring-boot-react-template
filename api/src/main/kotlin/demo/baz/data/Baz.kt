@@ -18,6 +18,9 @@ import javax.persistence.Table
  *
  * @property id - auto generated id
  * @property msg - msg of the baz
+ * @property createdAt - date this baz was created
+ * @property updatedAt - date this baz was updated
+ * @property deletedAt - date this baz was deleted
  */
 @MappedSuperclass
 class BaseBaz internal constructor(
@@ -44,8 +47,10 @@ class BaseBaz internal constructor(
 @SQLDelete(sql = "UPDATE baz SET deleted_at = now() WHERE id=?")
 class Baz internal constructor(
     id: Long?,
-    boo: String
-) : BaseBaz(id, boo)
+    boo: String,
+    createdAt: OffsetDateTime?,
+    updatedAt: OffsetDateTime?
+) : BaseBaz(id, boo, createdAt, updatedAt)
 
 /**
  * Hard deletable Baz
@@ -54,8 +59,8 @@ class Baz internal constructor(
 @Table(name = "baz")
 class BazMaster internal constructor(
     id: Long?,
-    boo: String,
+    msg: String,
     createdAt: OffsetDateTime?,
     updatedAt: OffsetDateTime?,
     deletedAt: OffsetDateTime?
-) : BaseBaz(id, boo, createdAt, updatedAt, deletedAt)
+) : BaseBaz(id, msg, createdAt, updatedAt, deletedAt)
