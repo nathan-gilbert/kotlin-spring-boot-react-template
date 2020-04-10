@@ -26,3 +26,6 @@ Assumes postgreSQL.
 
 ## TODO
 
+* Add logging
+* Add authentication
+

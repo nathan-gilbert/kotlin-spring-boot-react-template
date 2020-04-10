@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.time.OffsetDateTime
-import java.time.OffsetDateTime.now
 
 data class CreateBazRequest(
     val msg: String
@@ -41,7 +40,7 @@ class BazController(
   @ResponseStatus(HttpStatus.OK)
   fun getBaz(@PathVariable id: Long): BazResponse {
     val result = bazService.get(id)
-    return BazResponse(result.id!!, result.msg, now(), now(), null)
+    return BazResponse(result.id!!, result.msg, result.createdAt, result.updatedAt, null)
   }
 
   @DeleteMapping("/{id}")
