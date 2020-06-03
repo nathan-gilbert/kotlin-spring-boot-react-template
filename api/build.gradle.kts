@@ -2,15 +2,16 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("org.springframework.boot") version "2.2.6.RELEASE"
+  val kotlinVersion = "1.3.72"
+  id("org.springframework.boot") version "2.3.0.RELEASE"
   id("io.spring.dependency-management") version "1.0.9.RELEASE"
   @Suppress("StringLiteralDuplication")
-  kotlin("jvm") version "1.3.71"
-  kotlin("plugin.spring") version "1.3.71"
-  kotlin("plugin.allopen") version "1.3.71"
-  kotlin("plugin.jpa") version "1.3.71"
-  kotlin("kapt") version "1.3.71"
-  id("io.gitlab.arturbosch.detekt") version "1.7.1"
+  kotlin("jvm") version kotlinVersion
+  kotlin("plugin.spring") version kotlinVersion
+  kotlin("plugin.allopen") version kotlinVersion
+  kotlin("plugin.jpa") version kotlinVersion
+  kotlin("kapt") version kotlinVersion
+  id("io.gitlab.arturbosch.detekt") version "1.9.1"
   id("jacoco")
   id("org.jetbrains.dokka") version "0.10.1"
   id("org.flywaydb.flyway") version "6.3.2"
@@ -38,10 +39,10 @@ dependencies {
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   kapt("org.springframework.boot:spring-boot-configuration-processor")
-  testImplementation("org.junit.jupiter:junit-jupiter:5.6.1")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.7.1")
+  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.9.1")
 }
 
 allOpen {
