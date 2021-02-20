@@ -1,20 +1,19 @@
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  val kotlinVersion = "1.3.72"
-  id("org.springframework.boot") version "2.3.0.RELEASE"
-  id("io.spring.dependency-management") version "1.0.9.RELEASE"
+  val kotlinVersion = "1.4.30"
+  id("org.springframework.boot") version "2.4.3"
+  id("io.spring.dependency-management") version "1.0.11.RELEASE"
   @Suppress("StringLiteralDuplication")
   kotlin("jvm") version kotlinVersion
   kotlin("plugin.spring") version kotlinVersion
   kotlin("plugin.allopen") version kotlinVersion
   kotlin("plugin.jpa") version kotlinVersion
   kotlin("kapt") version kotlinVersion
-  id("io.gitlab.arturbosch.detekt") version "1.9.1"
+  id("io.gitlab.arturbosch.detekt") version "1.16.0-RC1"
   id("jacoco")
-  id("org.jetbrains.dokka") version "0.10.1"
-  id("org.flywaydb.flyway") version "6.3.2"
+  id("org.jetbrains.dokka") version "1.4.20"
+  id("org.flywaydb.flyway") version "7.5.3"
 }
 
 group = "demo"
@@ -34,15 +33,14 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("org.postgresql:postgresql")
-  implementation("io.springfox:springfox-swagger2:2.9.2")
-  implementation("io.springfox:springfox-swagger-ui:2.9.2")
+  implementation("io.springfox:springfox-boot-starter:3.0.0")
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   kapt("org.springframework.boot:spring-boot-configuration-processor")
-  testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.9.1")
+  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0-RC1")
 }
 
 allOpen {
@@ -112,9 +110,3 @@ tasks.jacocoTestCoverageVerification {
   }
 }
 
-tasks {
-  getting(DokkaTask::class) {
-    outputFormat = "html"
-    outputDirectory = "$buildDir/dokka"
-  }
-}
