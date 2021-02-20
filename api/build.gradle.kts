@@ -1,19 +1,26 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 plugins {
   val kotlinVersion = "1.4.30"
-  id("org.springframework.boot") version "2.4.3"
-  id("io.spring.dependency-management") version "1.0.11.RELEASE"
+  val springVersion = "2.4.3"
+  val springDepMgmtVersion = "1.0.11.RELEASE"
+  val detektVersion = "1.16.0-RC1"
+  val dokkaVersion = "1.4.20"
+  val flywayVersion = "7.5.3"
+
+  id("org.springframework.boot") version springVersion
+  id("io.spring.dependency-management") version springDepMgmtVersion
   @Suppress("StringLiteralDuplication")
   kotlin("jvm") version kotlinVersion
   kotlin("plugin.spring") version kotlinVersion
   kotlin("plugin.allopen") version kotlinVersion
   kotlin("plugin.jpa") version kotlinVersion
   kotlin("kapt") version kotlinVersion
-  id("io.gitlab.arturbosch.detekt") version "1.16.0-RC1"
+  id("io.gitlab.arturbosch.detekt") version detektVersion
   id("jacoco")
-  id("org.jetbrains.dokka") version "1.4.20"
-  id("org.flywaydb.flyway") version "7.5.3"
+  id("org.jetbrains.dokka") version dokkaVersion
+  id("org.flywaydb.flyway") version flywayVersion
 }
 
 group = "demo"
