@@ -22,7 +22,7 @@ Assumes postgreSQL.
 ## Swagger Documentation
 
 * `./gradlew bootRun`
-* open browser and navigate to `https://localhost:9000/api/swagger-ui.html`
+* open browser and navigate to `http://localhost:9000/api/swagger-ui/index.html`
 
 ## TODO
 
