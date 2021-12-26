@@ -25,6 +25,10 @@ Assumes PostgreSQL.
 - `./gradlew bootRun`
 - open browser and navigate to <http://localhost:9000/api/swagger-ui/index.html>
 
+## Test the service health endpoint
+
+Run `curl http://localhost:9000/api/health -s | jq`
+
 ## TODO
 
 - Add logging
