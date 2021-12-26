@@ -1,13 +1,17 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
+val detektVersion = "1.19.0"
+val mockitoVersion = "4.0.0"
+val jupiterVersion = "5.8.2"
+val springFoxStarterVersion = "3.0.0"
 plugins {
-  val kotlinVersion = "1.4.30"
-  val springVersion = "2.4.3"
+  val kotlinVersion = "1.6.10"
+  val springVersion = "2.6.2"
   val springDepMgmtVersion = "1.0.11.RELEASE"
-  val detektVersion = "1.16.0-RC1"
-  val dokkaVersion = "1.4.20"
-  val flywayVersion = "7.5.3"
+  val dokkaVersion = "1.6.0"
+  val flywayVersion = "8.3.0"
+  val detektVersion = "1.19.0"
 
   id("org.springframework.boot") version springVersion
   id("io.spring.dependency-management") version springDepMgmtVersion
@@ -40,14 +44,14 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("org.postgresql:postgresql")
-  implementation("io.springfox:springfox-boot-starter:3.0.0")
+  implementation("io.springfox:springfox-boot-starter:$springFoxStarterVersion")
   runtimeOnly("com.h2database:h2")
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   kapt("org.springframework.boot:spring-boot-configuration-processor")
-  testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+  testImplementation("org.junit.jupiter:junit-jupiter:$jupiterVersion")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
-  testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
-  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0-RC1")
+  testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoVersion")
+  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
 }
 
 allOpen {
@@ -57,21 +61,14 @@ allOpen {
 }
 
 detekt {
-  failFast = true // fail build on any finding
   buildUponDefaultConfig = true // preconfigure defaults
   // point to your custom config defining rules to run, overwriting default behavior
   config = files("$projectDir/detekt.yml")
   autoCorrect = true
-
-  reports {
-    html.enabled = true // observe findings in your browser with structure and code snippets
-    xml.enabled = false // checkstyle like format mainly for integrations like Jenkins
-    txt.enabled = false // similar to the console output, contains issue signature to manually edit baseline files
-  }
 }
 
 jacoco {
-  toolVersion = "0.8.6"
+  toolVersion = "0.8.7"
 }
 
 flyway {
@@ -83,7 +80,7 @@ flyway {
 tasks.withType<KotlinCompile> {
   kotlinOptions {
     freeCompilerArgs = listOf("-Xjsr305=strict")
-    this.jvmTarget = "11"
+    jvmTarget = "17"
   }
 }
 
@@ -91,12 +88,15 @@ tasks.withType<Test> {
   useJUnitPlatform()
 }
 
-tasks {
-  withType<io.gitlab.arturbosch.detekt.Detekt> {
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     // Target version of the generated JVM bytecode. It is used for type resolution.
-    this.jvmTarget = "11"
+    jvmTarget = "17"
+    reports {
+      html.required.set(true) // observe findings in your browser with structure and code snippets
+      xml.required.set(false) // checkstyle like format mainly for integrations like Jenkins
+      txt.required.set(false) // similar to the console output, contains issue signature to manually edit baseline files
+    }
   }
-}
 
 tasks.jacocoTestReport {
   dependsOn(":test")
@@ -117,4 +117,3 @@ tasks.jacocoTestCoverageVerification {
     }
   }
 }
-

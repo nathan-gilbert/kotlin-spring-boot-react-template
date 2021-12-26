@@ -36,39 +36,41 @@ data class BazResponse(
 class BazController(
     private val bazService: BazService
 ) {
-  @GetMapping("/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  fun getBaz(@PathVariable id: Long): BazResponse {
-    val result = bazService.get(id)
-    return BazResponse(result.id!!, result.msg, result.createdAt, result.updatedAt, null)
-  }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun getBaz(@PathVariable id: Long): BazResponse {
+        val result = bazService.get(id)
+        return BazResponse(result.id!!, result.msg, result.createdAt, result.updatedAt, null)
+    }
 
-  @DeleteMapping("/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  fun deleteBaz(@PathVariable id: Long) {
-    bazService.remove(id)
-  }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteBaz(@PathVariable id: Long) {
+        bazService.remove(id)
+    }
 
-  @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  fun createBaz(
-      @Validated @RequestBody createBazBody: CreateBazRequest
-  ): BazResponse {
-    val newBaz = bazService.create(createBazBody.msg)
-    return BazResponse(newBaz.id!!, newBaz.msg, newBaz.createdAt, newBaz.updatedAt, newBaz.deletedAt)
-  }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun createBaz(
+        @Validated @RequestBody createBazBody: CreateBazRequest
+    ): BazResponse {
+        val newBaz = bazService.create(createBazBody.msg)
+        return BazResponse(newBaz.id!!, newBaz.msg, newBaz.createdAt, newBaz.updatedAt, newBaz.deletedAt)
+    }
 
-  @PutMapping
-  @ResponseStatus(HttpStatus.OK)
-  fun updateBaz(
-      @Validated @RequestBody updateBazBody: UpdateBazRequest
-  ): BazResponse {
-    bazService.update(updateBazBody.id, updateBazBody.msg)
-    val updatedBaz = bazService.get(updateBazBody.id)
-    return BazResponse(updatedBaz.id!!,
-        updatedBaz.msg,
-        updatedBaz.createdAt,
-        updatedBaz.updatedAt,
-        updatedBaz.deletedAt)
-  }
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun updateBaz(
+        @Validated @RequestBody updateBazBody: UpdateBazRequest
+    ): BazResponse {
+        bazService.update(updateBazBody.id, updateBazBody.msg)
+        val updatedBaz = bazService.get(updateBazBody.id)
+        return BazResponse(
+            updatedBaz.id!!,
+            updatedBaz.msg,
+            updatedBaz.createdAt,
+            updatedBaz.updatedAt,
+            updatedBaz.deletedAt
+        )
+    }
 }

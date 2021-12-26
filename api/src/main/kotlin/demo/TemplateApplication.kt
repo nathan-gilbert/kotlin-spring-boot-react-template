@@ -7,6 +7,6 @@ import org.springframework.boot.runApplication
 class TemplateApplication
 
 fun main(args: Array<String>) {
-  @Suppress("SpreadOperator")
-  runApplication<TemplateApplication>(*args)
+    @Suppress("SpreadOperator")
+    runApplication<TemplateApplication>(*args)
 }

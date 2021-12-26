@@ -28,4 +28,3 @@ Assumes postgreSQL.
 
 * Add logging
 * Add authentication
-

@@ -22,38 +22,38 @@ class BazServiceImpl(
     private val bazRepository: BazRepository
 ) : BazService {
 
-  override fun create(msg: String): BazDto {
-    val newBaz = bazRepository.save(Baz(null, msg, null, null))
-    return newBaz.toDto()
-  }
+    override fun create(msg: String): BazDto {
+        val newBaz = bazRepository.save(Baz(null, msg, null, null))
+        return newBaz.toDto()
+    }
 
-  override fun get(id: Long): BazDto {
-    val baz = bazRepository.findById(id)
-        .orElseThrow { RecordNotFoundException("Invalid baz id: $id"); }
-    return baz.toDto()
-  }
+    override fun get(id: Long): BazDto {
+        val baz = bazRepository.findById(id)
+            .orElseThrow { RecordNotFoundException("Invalid baz id: $id"); }
+        return baz.toDto()
+    }
 
-  @Transactional
-  override fun update(id: Long, msg: String): BazDto {
-    val bazToUpdate = get(id)
-    bazRepository.save(Baz(bazToUpdate.id, msg, bazToUpdate.createdAt, null))
-    return get(id)
-  }
+    @Transactional
+    override fun update(id: Long, msg: String): BazDto {
+        val bazToUpdate = get(id)
+        bazRepository.save(Baz(bazToUpdate.id, msg, bazToUpdate.createdAt, null))
+        return get(id)
+    }
 
-  override fun remove(id: Long) {
-    bazRepository.deleteById(id)
-  }
+    override fun remove(id: Long) {
+        bazRepository.deleteById(id)
+    }
 
-  override fun restore(id: Long) {
-    bazRepository.restore(id)
-  }
+    override fun restore(id: Long) {
+        bazRepository.restore(id)
+    }
 
-  private fun Baz.toDto() =
-      BazDto(
-          id,
-          msg,
-          createdAt,
-          updatedAt,
-          deletedAt
-      )
+    private fun Baz.toDto() =
+        BazDto(
+            id,
+            msg,
+            createdAt,
+            updatedAt,
+            deletedAt
+        )
 }

@@ -9,7 +9,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-
 private const val CONTROLLER_PATH = "/health"
 
 @SpringBootTest
@@ -18,8 +17,8 @@ private const val CONTROLLER_PATH = "/health"
 internal class HealthCheckControllerTest @Autowired constructor(
     private val mvc: MockMvc
 ) {
-  @Test
-  fun `health endpoint returns valid response`() {
-    mvc.perform(get(CONTROLLER_PATH)).andExpect(status().isOk)
-  }
+    @Test
+    fun `health endpoint returns valid response`() {
+        mvc.perform(get(CONTROLLER_PATH)).andExpect(status().isOk)
+    }
 }
