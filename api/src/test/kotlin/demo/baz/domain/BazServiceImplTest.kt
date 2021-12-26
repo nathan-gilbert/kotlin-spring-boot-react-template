@@ -45,7 +45,7 @@ internal class BazServiceImplTest {
 
     @Test
     fun `creates new Baz`() {
-        whenever(bazRepository.save(any()))
+        whenever(bazRepository.save(any<Baz>()))
             .thenReturn(DEFAULT_BAZ)
 
         val createdBazDto = bazService.create(DEFAULT_MSG)

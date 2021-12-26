@@ -4,6 +4,10 @@ server:
   servlet.contextPath: /api
 
 spring:
+  # TODO: remove when migrated to <https://springdoc.org/#migrating-from-springfox>
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     url: jdbc:postgresql://localhost:5432/demo
     username: nathan
