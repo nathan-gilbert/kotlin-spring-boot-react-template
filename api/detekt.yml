@@ -56,7 +56,9 @@ formatting:
   active: true
   android: false
   autoCorrect: true
-  indentSize: 2
+  Indentation:
+    active: true
+    indentSize: 2
   MaximumLineLength:
     active: true
 

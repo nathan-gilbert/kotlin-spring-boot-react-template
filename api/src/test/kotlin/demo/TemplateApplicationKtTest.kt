@@ -9,10 +9,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ExtendWith(SpringExtension::class)
 @SpringBootTest
 internal class TemplateApplicationKtTest {
-    @Test
-    fun `main executes without exceptions`() {
-        Assertions.assertThatCode {
-            main(emptyArray())
-        }.doesNotThrowAnyException()
-    }
+  @Test
+  fun `main executes without exceptions`() {
+    Assertions.assertThatCode {
+      main(emptyArray())
+    }.doesNotThrowAnyException()
+  }
 }

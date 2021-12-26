@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
@@ -32,7 +33,6 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
-  jcenter()
   mavenCentral()
 }
 
@@ -88,23 +88,23 @@ tasks.withType<Test> {
   useJUnitPlatform()
 }
 
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-    // Target version of the generated JVM bytecode. It is used for type resolution.
-    jvmTarget = "17"
-    reports {
-      html.required.set(true) // observe findings in your browser with structure and code snippets
-      xml.required.set(false) // checkstyle like format mainly for integrations like Jenkins
-      txt.required.set(false) // similar to the console output, contains issue signature to manually edit baseline files
-    }
+tasks.withType<Detekt>().configureEach {
+  // Target version of the generated JVM bytecode. It is used for type resolution.
+  jvmTarget = "17"
+  reports {
+    html.required.set(true) // observe findings in your browser with structure and code snippets
+    xml.required.set(false) // checkstyle like format mainly for integrations like Jenkins
+    txt.required.set(false) // similar to the console output, contains issue signature to manually edit baseline files
   }
+}
 
 tasks.jacocoTestReport {
   dependsOn(":test")
   reports {
-    xml.isEnabled = false
-    csv.isEnabled = false
-    html.isEnabled = true
-    html.destination = file("$buildDir/reports/jacocoHtml")
+    xml.required.set(false)
+    csv.required.set(false)
+    html.required.set(true)
+    html.outputLocation.set(file("$buildDir/reports/jacocoHtml"))
   }
 }
 

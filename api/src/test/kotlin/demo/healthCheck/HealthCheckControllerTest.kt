@@ -15,10 +15,10 @@ private const val CONTROLLER_PATH = "/health"
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc
 internal class HealthCheckControllerTest @Autowired constructor(
-    private val mvc: MockMvc
+  private val mvc: MockMvc
 ) {
-    @Test
-    fun `health endpoint returns valid response`() {
-        mvc.perform(get(CONTROLLER_PATH)).andExpect(status().isOk)
-    }
+  @Test
+  fun `health endpoint returns valid response`() {
+    mvc.perform(get(CONTROLLER_PATH)).andExpect(status().isOk)
+  }
 }

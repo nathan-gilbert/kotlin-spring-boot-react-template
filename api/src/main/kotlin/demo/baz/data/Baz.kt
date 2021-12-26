@@ -24,19 +24,19 @@ import javax.persistence.Table
  */
 @MappedSuperclass
 class BaseBaz internal constructor(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?,
-    @Column(name = "msg")
-    val msg: String,
-    @Column(name = "created_at")
-    @CreationTimestamp
-    var createdAt: OffsetDateTime? = null,
-    @Column(name = "updated_at")
-    @UpdateTimestamp
-    var updatedAt: OffsetDateTime? = null,
-    @Column(name = "deleted_at")
-    val deletedAt: OffsetDateTime? = null
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  val id: Long?,
+  @Column(name = "msg")
+  val msg: String,
+  @Column(name = "created_at")
+  @CreationTimestamp
+  var createdAt: OffsetDateTime? = null,
+  @Column(name = "updated_at")
+  @UpdateTimestamp
+  var updatedAt: OffsetDateTime? = null,
+  @Column(name = "deleted_at")
+  val deletedAt: OffsetDateTime? = null
 )
 
 /**
@@ -46,10 +46,10 @@ class BaseBaz internal constructor(
 @Where(clause = "deleted_at IS NULL")
 @SQLDelete(sql = "UPDATE baz SET deleted_at = now() WHERE id=?")
 class Baz internal constructor(
-    id: Long?,
-    boo: String,
-    createdAt: OffsetDateTime?,
-    updatedAt: OffsetDateTime?
+  id: Long?,
+  boo: String,
+  createdAt: OffsetDateTime?,
+  updatedAt: OffsetDateTime?
 ) : BaseBaz(id, boo, createdAt, updatedAt)
 
 /**
@@ -58,9 +58,9 @@ class Baz internal constructor(
 @Entity
 @Table(name = "baz")
 class BazMaster internal constructor(
-    id: Long?,
-    msg: String,
-    createdAt: OffsetDateTime?,
-    updatedAt: OffsetDateTime?,
-    deletedAt: OffsetDateTime?
+  id: Long?,
+  msg: String,
+  createdAt: OffsetDateTime?,
+  updatedAt: OffsetDateTime?,
+  deletedAt: OffsetDateTime?
 ) : BaseBaz(id, msg, createdAt, updatedAt, deletedAt)

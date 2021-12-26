@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.Query
  * Repository for soft deletable Bazes
  */
 interface BazRepository : JpaRepository<Baz, Long>, JpaSpecificationExecutor<Baz> {
-    @Modifying(clearAutomatically = true)
-    @Query("UPDATE baz SET deleted_at = NULL WHERE id=?1", nativeQuery = true)
-    fun restore(id: Long)
+  @Modifying(clearAutomatically = true)
+  @Query("UPDATE baz SET deleted_at = NULL WHERE id=?1", nativeQuery = true)
+  fun restore(id: Long)
 }
 
 /**
